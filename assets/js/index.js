@@ -1,16 +1,16 @@
 $(function() {
   // 调用 getUserInfo 获取用户基本信息
   getUserInfo()
-
+//todo0 实现退出功能
   var layer = layui.layer
 
   // 点击按钮，实现退出功能
   $('#btnLogout').on('click', function() {
     // 提示用户是否确认退出
-    layer.confirm('确定退出登录?', { icon: 3, title: '提示' }, function(index) {
+    layer.confirm('确定退出登录?', { icon: 3, title: '提示' }, function(index) {//* 弹出询问框，点击确定，将会执行此处回调函数
       //do something
       // 1. 清空本地存储中的 token
-      localStorage.removeItem('token')
+      localStorage.removeItem('token') //* 从localStorage中移除token
       // 2. 重新跳转到登录页面
       location.href = '/login.html'
 
@@ -20,6 +20,7 @@ $(function() {
   })
 })
 
+//todo1 获取用户信息，渲染头像 
 // 获取用户的基本信息
 function getUserInfo() {
   $.ajax({
@@ -32,10 +33,10 @@ function getUserInfo() {
       // 调用 renderAvatar 渲染用户的头像
       renderAvatar(res.data)
     }
-    // 不论成功还是失败，最终都会调用 complete 回调函数
+    //* ajax请求： 不论成功还是失败，最终都会调用 complete 回调函数
     // complete: function(res) {
     //   // console.log('执行了 complete 回调：')
-    //   // console.log(res)
+    //   // console.log(res) //* 打印传入complete的函数，可观察里面的结构
     //   // 在 complete 回调函数中，可以使用 res.responseJSON 拿到服务器响应回来的数据
     //   if (res.responseJSON.status === 1 && res.responseJSON.message === '身份认证失败！') {
     //     // 1. 强制清空 token
@@ -50,9 +51,9 @@ function getUserInfo() {
 // 渲染用户的头像
 function renderAvatar(user) {
   // 1. 获取用户的名称
-  var name = user.nickname || user.username
+  var name = user.nickname || user.username //* nickname昵称，username用户名
   // 2. 设置欢迎的文本
-  $('#welcome').html('欢迎&nbsp;&nbsp;' + name)
+  $('#welcome').html('欢迎&nbsp;&nbsp;' + name)//* &nbsp; 空格
   // 3. 按需渲染用户的头像
   if (user.user_pic !== null) {
     // 3.1 渲染图片头像
@@ -63,7 +64,7 @@ function renderAvatar(user) {
   } else {
     // 3.2 渲染文本头像
     $('.layui-nav-img').hide()
-    var first = name[0].toUpperCase()
+    var first = name[0].toUpperCase()//* 第一个字符串转成大写字母
     $('.text-avatar')
       .html(first)
       .show()
