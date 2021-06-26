@@ -5,7 +5,7 @@ $(function() {
   var $image = $('#image')
   // 1.2 配置选项
   const options = {
-    // 纵横比
+    // * 裁剪框纵横比
     aspectRatio: 1,
     // 指定预览区域
     preview: '.img-preview'
@@ -20,8 +20,9 @@ $(function() {
   })
 
   // 为文件选择框绑定 change 事件
-  $('#file').on('change', function(e) {
+  $('#file').on('change', function(e) {//* change事件（e）中含有用户上传的图片，打印事件，找到该图片
     // 获取用户选择的文件
+    // console.log(e)
     var filelist = e.target.files
     if (filelist.length === 0) {
       return layer.msg('请选择照片！')
@@ -47,7 +48,7 @@ $(function() {
         width: 100,
         height: 100
       })
-      .toDataURL('image/png') // 将 Canvas 画布上的内容，转化为 base64 格式的字符串
+      .toDataURL('image/png') // * 将 Canvas 画布上的内容，转化为 base64 格式的字符串（src直接赋值，以字符形式存储，可直接渲染，无需网络请求，缺点：编译后体积大30%左右）
     // 2. 调用接口，把头像上传到服务器
     $.ajax({
       method: 'POST',

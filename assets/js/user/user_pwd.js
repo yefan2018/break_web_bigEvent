@@ -20,14 +20,14 @@ $(function() {
     $.ajax({
       method: 'POST',
       url: '/my/updatepwd',
-      data: $(this).serialize(),
+      data: $(this).serialize(),//* 根据name属性
       success: function(res) {
         if (res.status !== 0) {
           return layui.layer.msg('更新密码失败！')
         }
         layui.layer.msg('更新密码成功！')
         // 重置表单
-        $('.layui-form')[0].reset()
+        $('.layui-form')[0].reset()//* $('.layui-form')表示jQuery获取到的$元素,[0]表示转换成原生dom元素，以便使用reset方法重置表单
       }
     })
   })
