@@ -15,13 +15,13 @@
       <div class="layui-card-header">修改用户信息</div>
       <div class="layui-card-body">
         <!-- form 表单区域 -->
-        <form class="layui-form" lay-filter="formUserInfo">
+        <form class="layui-form" lay-filter="formUserInfo"><!-- * 设置lay-filter属性，用于js中给表单快速赋值（根据各input的name属性），使用格式：form.val('formUserInfo', res.data(赋值,根据data中的属性名对应name同名属性，将数据值一一对应填充，)) -->
           <!-- 这是隐藏域 -->
-          <input type="hidden" name="id" value="" />
+          <input type="hidden" name="id" value="" /><!-- * 隐藏域不可见，用户看不到，用于提交（根据提交要求的数据来提交，这里需要一并提交id值）请求时，方便的将表单的一些不希望被看到的属性一并获取并提交 -->
           <div class="layui-form-item">
             <label class="layui-form-label">登录名称</label>
             <div class="layui-input-block">
-              <input type="text" name="username" required lay-verify="required" placeholder="请输入登录名称" autocomplete="off" class="layui-input" readonly />
+              <input type="text" name="username" required lay-verify="required" placeholder="请输入登录名称" autocomplete="off" class="layui-input" readonly /><!-- * readonly，只读，不可修改 -->
             </div>
           </div>
           <div class="layui-form-item">
@@ -46,7 +46,7 @@
       </div>
     </div>
 
-    <!-- 导入 layui 的 js -->
+    <!-- * 导入 layui 的 js，提供表单验证功能 -->
     <script src="/assets/lib/layui/layui.all.js"></script>
     <!-- 导入 jquery -->
     <script src="/assets/lib/jquery.js"></script>
